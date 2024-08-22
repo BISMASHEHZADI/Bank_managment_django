@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block text %}
+<div class="row">
+    <div class="col-sm-6 offset-sm-3">
+        <h2 class="alert alert-danger text-center"><b>ADD MONEY</b></h2>
+
+        <!-- Add Money Button -->
+        <form action="{% url 'add_money' %}" method="POST">
+            {% csrf_token %}
+            
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="acc_no">Account Number:</label>
+                    <input type="text" id="acc_no" name="acc_no" class="form-control" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="amount">Amount:</label>
+                    <input type="number" id="amount" name="amount" class="form-control" step="0.01" required>
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-danger">Add Money</button>
+        </form>
+    </div>
+</div>
+{% endblock text %}

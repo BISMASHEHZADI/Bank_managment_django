@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block text %}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2 class="alert alert-danger text-center"><b>ADD MEMBERS</b></h2>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class='btn btn-danger'>Add</button>
+        </form>
+    </div>
+
+    <div class="col-sm-6">
+        <h2 class="alert alert-danger text-center"><b>SHOW MEMBERS DETAIL</b></h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Account No</th>
+                    <th>Name</th>
+                    <th>Amount</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for b in stu %}
+                    <tr>
+                        <td>{{ b.id }}</td>
+                        <td>{{ b.acc_no }}</td>
+                        <td>{{ b.name }}</td>
+                        <td>{{ b.balance }}</td>
+                        <td>
+                            {% comment %} <form action="{% url 'withdraw' b.acc_no %}" method="POST"> {% endcomment %}
+                                {% comment %} {% csrf_token %} {% endcomment %}
+                                {% comment %} <button type="submit" class="btn btn-dark">Withdraw</button> {% endcomment %}
+                            {% comment %} </form> {% endcomment %}
+                            <a href="{% url 'add_money' %}" class="btn btn-dark">Deposit</a>
+                            <a href="{% url 'withdraw'%}" class="btn btn-dark">withdraw</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock text %}
